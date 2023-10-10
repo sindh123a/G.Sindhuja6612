@@ -1,0 +1,127 @@
+<html>
+
+<head>
+
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <div id="login-section" class="hidden">
+        <h1>Login</h1>
+        <form onsubmit="return login">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showRegistration()">Register here</a></p>
+    </div>
+
+
+    <div id="registration-section" class="hidden">
+        <h1>Register</h1>
+
+        <form onsubmit="return register()">
+            <lable>Email:<input type="text" id="regusername" placeholder="username"required><br></lable>
+            <input type="text" id="regUsername" placeholder="Username" required><br>
+            <input type="password" id="regPassword" placeholder="Password" required><br>
+            <input type="date" id="dateofbirth" placeholder="dateofbirth" required><br>
+            <input type="email" id="email" placeholder="enter your email" required><br>
+
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+    </div>
+    <div id="main-section" class="hidden">
+        <h1>Shopping Cart</h1>
+
+        <div class="products">
+            <div class="product">
+                <h2>silk saree</h2>
+                <img src="images/img1.png" width="200px" height="250px">
+                <P>uniform silk saree</P>
+                <p>Price: $800</p>
+                <p></p>
+                <button class="add-to-cart" onclick="addToCart('silk saree', 800)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h2>cotton saree</h2>
+                <img src="images/img2.png" width="200px" height="200px">
+                <p>Price: $1400</p>
+                <p>kanthara printed cotton saree</p>
+                <button class="add-to-cart" onclick="addToCart('cotton saree',400)">Add to cart</button>
+            </div>
+            <div class="product">
+                <h2>fancy saree</h2>
+                <img src="images/img3.png"  width="200px" height="200px">
+                <p>Price: $2500</p>
+                <p>heavy desinged organza Saree with an affordable price</p>
+                <button class="add-to-cart" onclick="addToCart('fancy saree', 2500)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h2>wedding saree</h2>
+                <img src="images/img4.png" width="250px" height="400px">  
+                <p>Price: $10000</p>
+                <p>Bright bridel golden saree</p>
+                <button class="add-to-cart" onclick="addToCart('wedding saree', 10000)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h2>plain saree</h2>
+                <img src="images/img5.png" width="200px" height="300px">
+                <p>Price: $900</p>
+                <p>lite weight simple plain saree</p>
+                <button class="add-to-cart" onclick="addToCart('plain saree', 900)">Add to Cart</button>
+            </div>
+        
+        
+        
+        </div>
+
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: $<span id="total">0</span></p>
+            <button onclick="checksout()">Checkout</button>
+        </div>
+    </div>
+<script>
+    let cartItems = [];
+
+function addToCart(product, price) {
+    cartItems.push({product, price});
+    updateCart();
+}
+
+function updateCart() {
+    let cartList = document.getElementById("cart-items");
+    let totalElement = document.getElementById("total");
+    let total = 0;
+
+    cartList.innerHTML = "";
+    cartItems.forEach(item => {
+        let listItem = document.createElement("li");
+        listItem.innerText = `${item.product} - $${item.price}`;
+        cartList.appendChild(listItem);
+        total += item.price;
+    });
+
+    totalElement.innerText = total;
+}
+
+
+
+
+// Add product and cart logic similar to the previous example
+
+function checksout() {
+    alert('Thank you for your purchase!');
+}
+
+</script>
+</body>
+
+</html>
